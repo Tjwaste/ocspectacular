@@ -1,0 +1,40 @@
+import sqlite3
+from sqlite3 import Error
+#Import SQL
+import os
+import os.path
+#Import datetime
+import datetime
+#
+#Define the DDL SQL to make the tables
+sqliteConnection = sqlite3.connect('gfg.db')
+#a cursor object is called to be capable to send commands to the SQL. 
+cursor = sqliteConnection.cursor()
+#
+
+#
+#Tables created in database with the following details below
+sql = """
+CREATE TABLE "User_Table" ( 
+"UserID" INTEGER NOT NULL,
+"UserName" TEXT,
+"UserPassword" TEXT,
+"UserFirstName" TEXT,
+"UserSurname" TEXT,
+"DateofBirth" TEXT,
+"EmailAddress" TEXT, 
+PRIMARY KEY("UserID" AUTOINCREMENT)
+);
+CREATE TABLE "Review_Table" (
+"ReviewID"  INTEGER NOT NULL,
+"ReviewText" STRING,
+"ReviewTopic"  STRING,
+"ReviewRate"  INTEGER,
+"CustomerID"  INTEGER,
+PRIMARY KEY("ReviewID" AUTOINCREMENT),
+CONSTRAINT "CustomerID_fk"  FOREIGN KEY("CustomerID") REFERENCES "Customer_Table"("CustomerID")
+);
+insert into User_Table (UserName, UserPassword, UserFirstName, UserSurname, DateofBirth, EmailAddress) values ('userjoe','pass', 'Joe', 'Harris', '010103', 'joe.@outlook.com');
+insert into User_Table (UserName, UserPassword, UserFirstName, UserSurname, DateofBirth, EmailAddress) values ('userfred','pass', 'Fred', 'Harrisr', '010101', 'fred.@outlook.com');
+insert into Review_Table (ReviewText,ReviewTopic,ReviewRate, CustomerID) values ('happy', 'satisfied with my food', 3,4);
+"""
