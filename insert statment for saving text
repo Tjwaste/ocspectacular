@@ -1,0 +1,11 @@
+def save_review():
+	global review
+	global rate
+	global topic
+	if review == '':
+		info('error', 'cant save blank page')
+	else:
+		# the query that inserts the review into the database 
+		mysql2 = ("INSERT INTO Review_Table(ReviewText, ReviewTopic, ReviewRate, CustomerID) VALUES ('"+ str(review.value) + "','" + str(topic.value) + "','" + str(rate.value) + "','" + str(user_LoggedIn) + "')")
+		execute_sql(database_file, mysql2)
+		info('success', 'your review has been saved')
