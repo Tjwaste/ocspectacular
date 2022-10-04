@@ -1,0 +1,31 @@
+#sign-up funtion#
+def sign_up():
+	#global variables of my inputs 
+	global Nusername 
+	global Npassword 
+	global Dateofbirth 
+	global Email
+	global Forename
+	global Surname
+	
+	##Prescence, length and formatt checks for the sign - up inputs
+	if Forename == '':
+		info('error, invalid name')
+	elif Surname == '':
+		info('error, invalid name')
+	elif Nusername == '':
+		info('error, you must enter a valid username')
+	elif Npassword == '' or len(Npassword.value) < 5:
+		info('error', ' you must enter a valid password atleast 5 characters long ')
+	elif '/' not in Dateofbirth.value or Dateofbirth == '':
+		info('error, you must enter a valid date')
+	elif '@' not in Email.value or '.' not in Email.value or Email == '':
+		info('error, invalid email adress does not contain @ or .')
+	else:
+		
+		## Query to insert the details into a database or creating an account 
+		mysql2 = ("INSERT INTO User_Table(UserName, UserPassword, UserFirstName, UserSurname, EmailAddress, DateofBirth) VALUES ('"+ str(Nusername.value) + "','" + str(Npassword.value) + "','" + str(Forename.value) + "','" + str(Surname.value) + "','" + str(Email.value) + "','" + str(Dateofbirth.value)+ "')")
+		execute_sql(database_file, mysql2) # calls the funtion to execute the query
+		info('success', 'saved')
+		closeSignup() #sign up page closes after details are entered correctly 
+		print(mysql2)
