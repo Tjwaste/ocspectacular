@@ -1,0 +1,22 @@
+#
+# login sql
+#
+def login_user():  #### TEST WITH 'or 1 = 1; -- 
+	global user_LoggedIn ## variable needed to know who logged in ##
+	#prescence checks on the log in details
+	if user_textbox.value == "":
+		info("Error", "You must enter a valid username")
+	elif PW_textbox.value == "":
+		info("Error", "You must enter a password")
+	else:
+		#a query meant to look through the database and check if the details entered match any within the database 
+		sqlselect = ("SELECT * FROM User_Table WHERE UserName = "+ "'"+ str(user_textbox.value)+"'"+ " AND UserPassword = "+ "'" + str(PW_textbox.value) + "'")
+		print(sqlselect)
+		rows = query_database(database_file, sqlselect) # executes database 
+		
+		if len(rows) == 0: ### This checks that the user was found ###
+			info("Error","not found")
+		else:
+			info("Log in","Success user found")
+			user_LoggedIn = rows[0][0]
+			openReview()
