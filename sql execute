@@ -12,18 +12,18 @@ conn.commit()
 #to query and the query parameter as the actual query to issue
 # for SELECT
 #
-def query_database(database, query):
-	Lconn = sqlite3.connect(database)
-	cur = Lconn.cursor()			# use a local cursor
+def query_database(database, query): #function to read database
+	Lconn = sqlite3.connect(database) #
+	cur = Lconn.cursor()			#this is a local cursor
 	cur.execute(query)
 	rows = cur.fetchall()
 	cur.close()
 	return rows
 #
 #
-#Executes the sql statement to INSERT and UPDATE rows
+
 #
-def execute_sql(database, sql_statement):
+def execute_sql(database, sql_statement):#Executes the sql statement to INSERT and UPDATE rows
 	Lconn = sqlite3.connect(database)
 	cur = Lconn.cursor()
 	cur.execute(sql_statement)
