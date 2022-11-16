@@ -1,7 +1,7 @@
 #
 # login sql
 #
-def login_user():  #### TEST WITH 'or 1 = 1; -- 
+def login_user(): 
 	global user_LoggedIn ## variable needed to know who logged in ##
 	#prescence checks on the log in details
 	if user_textbox.value == "":
@@ -15,7 +15,7 @@ def login_user():  #### TEST WITH 'or 1 = 1; --
 		rows = query_database(database_file, sqlselect) # executes database 
 		
 		if len(rows) == 0: ### This checks that the user was found ###
-			info("Error","not found")
+			info("Error","user not found")
 		else:
 			info("Log in","Success user found")
 			user_LoggedIn = rows[0][0]
